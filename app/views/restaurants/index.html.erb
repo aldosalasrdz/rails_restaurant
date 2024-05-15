@@ -1,0 +1,35 @@
+<%= nav_menu_desktop :restaurants %>
+<%= nav_menu_mobile :restaurants %>
+
+<div class="w-full">
+  <%= render "header" %>
+  <% if @restaurants.any? %>
+    <div id="restaurants">
+      <article
+        class="min-w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+      >
+        <%= render @restaurants %>
+      </article>
+    </div>
+  <% else %>
+    <div class="text-center">
+      <h3 class="mt-2 text-sm font-semibold text-neutral-900">No restaurants</h3>
+      <p class="mt-1 text-sm text-neutral-500">Get started by creating a new restaurant.</p>
+      <div class="mt-3">
+        <%= link_to new_restaurant_path, class: "inline-flex items-center gap-1 justify-center rounded-md font-semibold outline-none transition-colors bg-neutral-900 text-neutral-50 hover:bg-neutral-700 px-3 py-2 text-sm focus:ring-2 focus:ring-neutral-400 focus:ring-offset-2" do %>
+          <svg
+            class="-ml-0.5 mr-1.5 h-5 w-5"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z"
+            />
+          </svg>
+          New restaurant
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

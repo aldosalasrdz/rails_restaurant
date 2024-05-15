@@ -1,0 +1,29 @@
+<article
+  class="ring-1 ring-neutral-200 rounded-lg relative group text-neutral-600"
+>
+  <% if dish.photo.attached? %>
+    <%= image_tag dish.photo,
+    alt: "#{dish.name} photo",
+    loading: "lazy",
+    class: "rounded-t-lg object-cover h-44 w-full border-b" %>
+  <% end %>
+  <div class="p-4 flex flex-col gap-y-3">
+    <h4 class="font-medium text-neutral-900"><%= dish.name %></h4>
+    <p class="text-sm overflow-hidden"><%= dish.description %></p>
+    <div class="flex">
+      <span class="text-neutral-900 font-semibold tracking-tight"><%= number_to_currency(dish.price) %></span>
+    </div>
+  </div>
+  <div
+    class="
+      hidden gap-x-1.5 group-hover:flex z-10 absolute top-2 right-2 drop-shadow
+    "
+  >
+    <%= link_to edit_restaurant_dish_path(@restaurant, dish), class: "inline-flex items-center justify-center rounded-full font-medium ring-1 ring-neutral-300 outline-none transition-colors bg-neutral-100 hover:bg-neutral-200 p-2 text-sm focus:ring-2 focus:ring-neutral-400 focus:ring-offset-2" do %>
+      <%= icon "edit_pen" %>
+    <% end %>
+    <%= button_to restaurant_dish_path(@restaurant, dish), method: :delete, data: { turbo_confirm: "Do you really want to delete this dish?" }, class: "inline-flex items-center justify-center rounded-full font-medium ring-1 ring-red-300 outline-none transition-colors bg-red-100 text-red-800 hover:bg-red-200 p-2 text-sm focus:ring-2 focus:ring-neutral-400 focus:ring-offset-2" do %>
+      <%= icon "delete_bin" %>
+    <% end %>
+  </div>
+</article>

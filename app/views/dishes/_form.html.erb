@@ -1,0 +1,94 @@
+<div class="bg-white px-6 py-4 border border-neutral-200 rounded-lg shadow-sm">
+  <%= form_with(model: [@restaurant, dish], class: "contents") do |form| %>
+    <div class="mb-5 grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <div>
+        <%= form.label :name, class: "text-sm font-medium leading-none" %>
+        <%= form.text_field :name,
+                        class:
+                          "#{dish.errors[:name].any? ? "border-red-600" : "border-neutral-200"} block shadow-sm rounded-md px-3 py-2 mt-2 w-full placeholder:text-neutral-400 focus:border-neutral-200 focus:outline-none focus:ring-2 focus:ring-neutral-400 focus:ring-offset-2",
+                        placeholder: "Risotto" %>
+        <% unless dish.errors[:name].blank? %>
+          <span class="text-red-600 text-xs font-medium">
+            <%= dish.errors.full_messages_for(:name).join(", ") %>
+          </span>
+        <% end %>
+      </div>
+      <div>
+        <%= form.label :dish_group, class: "text-sm font-medium leading-none" %>
+        <%= form.select :dish_group,
+                    ["Entrees", "Soups & Salads", "Deserts", "Drink"],
+                    {},
+                    class:
+                      "block shadow-sm w-full rounded-md border-neutral-200 dark:border-neutral-700 w-full mb-4 mt-2 text-black dark:bg-neutral-900 dark:text-white" %>
+        <% unless dish.errors[:dish_group].blank? %>
+          <span class="text-red-600 text-xs font-medium">
+            <%= dish.errors.full_messages_for(:dish_group).join(", ") %>
+          </span>
+        <% end %>
+      </div>
+    </div>
+    <div class="my-5">
+      <%= form.label :description, class: "text-sm font-medium leading-none" %>
+      <%= form.text_area :description,
+                     rows: 4,
+                     class:
+                       "#{dish.errors[:description].any? ? "border-red-600" : "border-neutral-200"} block shadow-sm rounded-md border-neutral-200 px-3 py-2 mt-2 w-full placeholder:text-neutral-400 focus:border-neutral-200 focus:outline-none focus:ring-2 focus:ring-neutral-400 focus:ring-offset-2",
+                     placeholder: "What makes it special..." %>
+      <% unless dish.errors[:description].blank? %>
+        <span class="text-red-600 text-xs font-medium">
+          <%= dish.errors.full_messages_for(:description).join(", ") %>
+        </span>
+      <% end %>
+    </div>
+    <div class="my-5">
+      <%= form.label :price, class: "text-sm font-medium leading-none" %>
+      <div class="relative mt-2 rounded-md">
+        <div
+          class="
+            pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3
+          "
+        >
+          <span class="text-neutral-500 sm:text-sm">$</span>
+        </div>
+        <%= form.number_field :price,
+                          class:
+                            "#{dish.errors[:price].any? ? "border-red-600" : "border-neutral-200"} block shadow-sm rounded-md border border-neutral-200 pl-7 pr-12 px-3 py-2 mt-2 w-full placeholder:text-neutral-400 focus:border-neutral-200 focus:outline-none focus:ring-2 focus:ring-neutral-400 focus:ring-offset-2",
+                          placeholder: "0.00",
+                          step: "0.01" %>
+        <div
+          class="
+            pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3
+          "
+        >
+          <span class="text-neutral-500 sm:text-sm" id="price-currency">USD</span>
+        </div>
+      </div>
+      <% unless dish.errors[:price].blank? %>
+        <span class="text-red-600 text-xs font-medium">
+          <%= dish.errors.full_messages_for(:price).join(", ") %>
+        </span>
+      <% end %>
+    </div>
+    <div class="my-5">
+      <%= form.label :photo, class: "text-sm font-medium leading-none" %>
+      <%= form.file_field :photo,
+                      class:
+                        "#{dish.errors[:photo].any? ? "border-red-600" : "border-neutral-200"} block shadow-sm rounded-md border border-neutral-200 mt-2 w-full text-sm focus:border-neutral-200 focus:outline-none focus:ring-2 focus:ring-neutral-400 focus:ring-offset-2 file:border-0 file:bg-neutral-100 file:me-4 file:py-2.5 file:px-3.5",
+                      accept: "image/png, image/jpg, image/jpeg, image/webp" %>
+      <p class="text-xs text-neutral-500 mt-2">PNG, JPG, JPEG or WEBP</p>
+      <% unless dish.errors[:photo].blank? %>
+        <span class="text-red-600 text-xs font-medium">
+          <%= dish.errors.full_messages_for(:photo).join(", ") %>
+        </span>
+      <% end %>
+    </div>
+    <div class="flex items-center justify-between text-sm">
+      <%= link_to restaurant_dishes_path(@restaurant), class: "shadow-sm inline-flex items-center justify-center rounded-md font-medium outline-none transition-colors border border-neutral-200 bg-transparent hover:bg-neutral-100 h-10 px-4 text-base focus:bg-neutral-100 focus:ring-2 focus:ring-neutral-400 focus:ring-offset-2" do %>
+        <%= icon "chevron_left" %>
+        </svg>
+        Back
+      <% end %>
+      <%= form.submit class:
+                    "shadow inline-flex items-center justify-center rounded-md font-medium outline-none transition-colors bg-neutral-900 text-neutral-50 hover:bg-neutral-700 h-10 px-4 text-base focus:ring-2 focus:ring-neutral-400 focus:ring-offset-2" %>
+    </div>
+  <% end %>

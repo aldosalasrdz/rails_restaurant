@@ -1,0 +1,32 @@
+<div id="<%= dom_id order %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Sub total:</strong>
+    <%= order.sub_total %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Taxes:</strong>
+    <%= order.taxes %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Total:</strong>
+    <%= order.total %>
+  </p>
+
+  <% if action_name != "show" %>
+    <div class="flex">
+      <%= link_to "Show this order",
+      restaurant_order_path(@restaurant, order),
+      class: "rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+      <%= button_to "Delete this order",
+      restaurant_order_path(@restaurant, order),
+      method: :delete,
+      data: {
+        turbo_confirm: "Do you really want to delete this order?",
+      },
+      class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 font-medium" %>
+      <hr class="mt-6">
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RailsTest</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-cache-control" content="no-cache">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+  <body class="antialiased">
+    <div
+      class="
+        absolute inset-0 -z-10 h-full w-full bg-white
+        bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)]
+        bg-[size:6rem_6rem]
+      "
+    ><div
+        class="
+          absolute bottom-0 left-0 right-0 top-0
+          bg-[radial-gradient(circle_500px_at_50%_200px,#C9EBFF,transparent)]
+        "
+      ></div></div>
+    <header>
+      <nav
+        class="
+          max-w-screen-xl flex items-center justify-between mx-auto py-3 px-8 lg:px-20
+          gap-4
+        "
+      >
+        <%= link_to "Restaurant App", root_path, class: "text-lg font-medium" %>
+        <%= link_to "Login",
+        restaurants_path,
+        class:
+          "shadow-sm bg-white hover:bg-neutral-100 transition-colors ring-1 ring-neutral-200 hover:ring-neutral-300 inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 py-2" %>
+      </nav>
+    </header>
+    <main class="mt-16 px-8 lg:px-20">
+      <%= yield %>
+    </main>
+  </body>
+</html>

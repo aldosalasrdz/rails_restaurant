@@ -1,0 +1,82 @@
+<div class="bg-white px-6 py-4 border border-neutral-200 rounded-lg shadow-sm">
+  <%= form_with(model: restaurant, class: "contents") do |form| %>
+    <div class="mb-5 grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <div>
+        <%= form.label :name, class: "text-sm font-medium leading-none" %>
+        <%= form.text_field :name,
+                        class:
+                          "#{restaurant.errors[:name].any? ? "border-red-600" : "border-neutral-200"} block shadow-sm rounded-md px-3 py-2 mt-2 w-full placeholder:text-neutral-400 focus:border-neutral-200 focus:outline-none focus:ring-2 focus:ring-neutral-400 focus:ring-offset-2",
+                        placeholder: "Flavor Town" %>
+        <% unless restaurant.errors[:name].blank? %>
+          <span class="text-red-600 text-xs font-medium">
+            <%= restaurant.errors.full_messages_for(:name).join(", ") %>
+          </span>
+        <% end %>
+      </div>
+      <div>
+        <%= form.label :phone, class: "text-sm font-medium leading-none" %>
+        <%= form.telephone_field :phone,
+                             class:
+                               "#{restaurant.errors[:phone].any? ? "border-red-600" : "border-neutral-200"} block shadow-sm rounded-md border border-neutral-200 px-3 py-2 mt-2 w-full placeholder:text-neutral-400 focus:border-neutral-200 focus:outline-none focus:ring-2 focus:ring-neutral-400 focus:ring-offset-2",
+                             placeholder: "123-456-7890" %>
+        <% unless restaurant.errors[:phone].blank? %>
+          <span class="text-red-600 text-xs font-medium">
+            <%= restaurant.errors.full_messages_for(:phone).join(", ") %>
+          </span>
+        <% end %>
+      </div>
+    </div>
+    <div class="my-5">
+      <%= form.label :description, class: "text-sm font-medium leading-none" %>
+      <%= form.text_area :description,
+                     rows: 4,
+                     class:
+                       "#{restaurant.errors[:description].any? ? "border-red-600" : "border-neutral-200"} block shadow-sm rounded-md border-neutral-200 px-3 py-2 mt-2 w-full placeholder:text-neutral-400 focus:border-neutral-200 focus:outline-none focus:ring-2 focus:ring-neutral-400 focus:ring-offset-2",
+                     placeholder: "What makes your restaurant unique..." %>
+      <% unless restaurant.errors[:description].blank? %>
+        <span class="text-red-600 text-xs font-medium">
+          <%= restaurant.errors.full_messages_for(:description).join(", ") %>
+        </span>
+      <% end %>
+    </div>
+    <div class="my-5">
+      <%= form.label :address, class: "text-sm font-medium leading-none" %>
+      <%= form.text_field :address,
+                      class:
+                        "#{restaurant.errors[:description].any? ? "border-red-600" : "border-neutral-200"} block shadow-sm rounded-md border border-neutral-200 px-3 py-2 mt-2 w-full placeholder:text-neutral-400 focus:border-neutral-200 focus:outline-none focus:ring-2 focus:ring-neutral-400 focus:ring-offset-2",
+                      placeholder: "4616 Saran Shoals, West Magen, NE 64231-1671" %>
+      <% unless restaurant.errors[:address].blank? %>
+        <span class="text-red-600 text-xs font-medium">
+          <%= restaurant.errors.full_messages_for(:address).join(", ") %>
+        </span>
+      <% end %>
+    </div>
+    <div class="my-5">
+      <%= form.label :logo, class: "text-sm font-medium leading-none" %>
+      <%= form.file_field :logo,
+                      class:
+                        "#{restaurant.errors[:logo].any? ? "border-red-600" : "border-neutral-200"} block shadow-sm rounded-md border border-neutral-200 mt-2 w-full text-sm focus:border-neutral-200 focus:outline-none focus:ring-2 focus:ring-neutral-400 focus:ring-offset-2 file:border-0 file:bg-neutral-100 file:me-4 file:py-2.5 file:px-3.5",
+                      accept: "image/png, image/jpg, image/jpeg" %>
+      <p class="text-xs text-neutral-500 mt-2">PNG, JPG or JPEG</p>
+      <% unless restaurant.errors[:logo].blank? %>
+        <span class="text-red-600 text-xs font-medium">
+          <%= restaurant.errors.full_messages_for(:logo).join(", ") %>
+        </span>
+      <% end %>
+    </div>
+    <div class="flex items-center justify-between text-sm">
+      <% if action_name == "new" || action_name == "create" %>
+        <%= link_to restaurants_path, class: "shadow-sm inline-flex items-center justify-center rounded-md font-medium outline-none transition-colors border border-neutral-200 bg-transparent hover:bg-neutral-100 h-10 px-4 text-base focus:bg-neutral-100 focus:ring-2 focus:ring-neutral-400 focus:ring-offset-2" do %>
+          <%= icon "chevron_left" %>
+          Back
+        <% end %>
+      <% else %>
+        <%= link_to restaurant_path(@restaurant), class: "shadow-sm inline-flex items-center justify-center rounded-md font-medium outline-none transition-colors border border-neutral-200 bg-transparent hover:bg-neutral-100 h-10 px-4 text-base focus:bg-neutral-100 focus:ring-2 focus:ring-neutral-400 focus:ring-offset-2" do %>
+          <%= icon "chevron_left" %>
+          Back
+        <% end %>
+      <% end %>
+      <%= form.submit class:
+                    "shadow inline-flex items-center justify-center rounded-md font-medium outline-none transition-colors bg-neutral-900 text-neutral-50 hover:bg-neutral-700 h-10 px-4 text-base focus:ring-2 focus:ring-neutral-400 focus:ring-offset-2" %>
+    </div>
+  <% end %>

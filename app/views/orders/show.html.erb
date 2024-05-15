@@ -1,0 +1,52 @@
+<%= nav_menu_desktop :orders %>
+<%= nav_menu_mobile :orders %>
+<%= render "header" %>
+
+<%= link_to restaurant_orders_path(@restaurant), class: "inline-flex items-center text-sm text-neutral-500 mb-10 hover:underline" do %>
+  <%= icon "chevron_left" %>
+  Back to orders
+<% end %>
+
+<div class="flex items-center gap-x-4">
+  <h3 class="font-semibold text-2xl">Order #<%= @order.id %></h3>
+  <span class="text-neutral-600"><%= l(@order.created_at, format: :long) %></span>
+</div>
+
+<h3>Items</h3>
+<%= link_to "Add Item", new_restaurant_order_item_path(@restaurant, @order) %>
+<ul class="mb-48">
+  <% @order.items.each do |item| %>
+    <li class="flex gap-x-4">
+      <%= item.dish.name %>
+      -
+      <%= number_to_currency(item.dish.price) %>
+      x
+      <%= item.quantity %>
+      <%= link_to "Edit", edit_restaurant_order_item_path(@restaurant, @order, item) %>
+      <%= button_to "Delete",
+      restaurant_order_item_path(@restaurant, @order, item),
+      method: :delete,
+      data: {
+        confirm: "Are you sure?",
+      } %>
+    </li>
+  <% end %>
+</ul>
+
+<div class=" bg-white fixed bottom-0 left-0 right-0 shadow-2xl border-t">
+  <div
+    class="
+      max-w-7xl mx-auto flex flex-col items-end text-neutral-600 py-6 px-4 sm:px-6
+      lg:px-8
+    "
+  >
+    <p>Sub Total:
+      <span><%= number_to_currency(@order.sub_total) %></span></p>
+    <p>Taxes:
+      <span><%= number_to_currency(@order.taxes) %></span></p>
+    <p class="font-medium text-xl text-neutral-900">
+      Total:
+      <span><%= number_to_currency(@order.total) %></span>
+    </p>
+  </div>
+</div>

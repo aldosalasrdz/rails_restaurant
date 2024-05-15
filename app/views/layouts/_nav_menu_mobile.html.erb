@@ -1,0 +1,16 @@
+<div class="space-y-1 pb-3 pt-2">
+  <%= nav_link_mobile root_path do %>
+    Home
+  <% end %>
+  <%= nav_link_mobile restaurants_path, selected: (option == :restaurants) do %>
+    Restaurants
+  <% end %>
+  <% if @restaurant.present? && action_name != "new" && action_name != "create" %>
+    <%= nav_link_mobile restaurant_dishes_path(@restaurant), selected: (option == :dishes) do %>
+      Dishes
+    <% end %>
+    <%= nav_link_mobile restaurant_orders_path(@restaurant), selected: (option == :orders) do %>
+      Orders
+    <% end %>
+  <% end %>
+</div>

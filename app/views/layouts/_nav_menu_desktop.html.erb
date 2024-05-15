@@ -1,0 +1,16 @@
+<div class="hidden sm:-my-px sm:flex sm:space-x-8">
+  <%= nav_link_desktop root_path do %>
+    Home
+  <% end %>
+  <%= nav_link_desktop restaurants_path, selected: (option == :restaurants) do %>
+    Restaurants
+  <% end %>
+  <% if @restaurant.present? && action_name != "new" && action_name != "create" || @dish.present? || @order.present? %>
+    <%= nav_link_desktop restaurant_dishes_path(@restaurant), selected: (option == :dishes) do %>
+      Dishes
+    <% end %>
+    <%= nav_link_desktop restaurant_orders_path(@restaurant), selected: (option == :orders) do %>
+      Orders
+    <% end %>
+  <% end %>
+</div>
