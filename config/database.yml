@@ -50,6 +50,8 @@ test:
 #
 production:
   <<: *default
-  database: rails_test_production
-  username: rails_test
-  password: <%= ENV["RAILS_TEST_DATABASE_PASSWORD"] %>
+  host: <%= ENV["DB_HOST"] %>
+  database: rails_restaurants
+  username: kamal
+  password: <%= ENV["MYSQL_ROOT_PASSWORD"] %>
+  port: 25060
