@@ -14,7 +14,7 @@ default: &default
   encoding: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: aldo
-  password: <%= Rails.application.credentials.database[:password] %>
+  password: <%= ENV["DB_PASSWORD"] %>
   socket: /var/run/mysqld/mysqld.sock
 
 development:
@@ -50,8 +50,6 @@ test:
 #
 production:
   <<: *default
-  host: <%= ENV["DB_HOST"] %>
   database: rails_restaurants
   username: kamal
   password: <%= ENV["MYSQL_ROOT_PASSWORD"] %>
-  port: 25060
