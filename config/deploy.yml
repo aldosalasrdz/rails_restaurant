@@ -30,9 +30,6 @@ env:
     - DB_USERNAME
     - MYSQL_ROOT_PASSWORD
 
-volumes:
-  - /var/run/mysqld/mysqld.sock:/var/run/mysqld/mysqld.sock
-
 # Use a different ssh user than root
 # ssh:
 #   user: app
