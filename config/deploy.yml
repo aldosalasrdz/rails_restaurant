@@ -60,10 +60,10 @@ accessories:
 #       - data:/data
 
 # Configure custom arguments for Traefik. Be sure to reboot traefik when you modify it.
-# traefik:
-#   args:
-#     accesslog: true
-#     accesslog.format: json
+traefik:
+  options:
+    publish:
+      - "5555:5555"
 
 # Configure a custom healthcheck (default is /up on port 3000)
 healthcheck:
