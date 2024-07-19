@@ -49,7 +49,7 @@ accessories:
   haproxy:
     image: haproxy:2.4
     host: 137.184.126.66
-    port: 80
+    port: 8080
     files:
       - config/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
 #   redis:
@@ -67,7 +67,7 @@ accessories:
 
 # Configure a custom healthcheck (default is /up on port 3000)
 healthcheck:
-  cord: false
+  port: 5555
 
 # Bridge fingerprinted assets, like JS and CSS, between versions to avoid
 # hitting 404 on in-flight requests. Combines all files from new and old
