@@ -49,7 +49,7 @@ accessories:
   haproxy:
     image: haproxy:2.4
     host: 137.184.126.66
-    port: 80
+    port: 8080
     files:
       - config/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
 #   redis:
