@@ -50,6 +50,7 @@ accessories:
     image: haproxy:2.4
     host: 137.184.126.66
     port: 8080
+    roles: web
     files:
       - config/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
 #   redis:
@@ -58,12 +59,6 @@ accessories:
 #     port: 6379
 #     directories:
 #       - data:/data
-
-# Configure custom arguments for Traefik. Be sure to reboot traefik when you modify it.
-traefik:
-  options:
-    publish:
-      - "5555:5555"
 
 # Configure a custom healthcheck (default is /up on port 3000)
 healthcheck:
