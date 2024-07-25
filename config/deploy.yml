@@ -50,7 +50,8 @@ accessories:
     image: haproxy:2.4
     host: 137.184.126.66
     port: 8080
-    roles: web
+    roles: 
+      - web
     files:
       - config/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
 #   redis:
