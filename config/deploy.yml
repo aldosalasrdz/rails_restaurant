@@ -1,12 +1,12 @@
 # Name of your application. Used to uniquely configure containers.
-service: rails-restaurant
+service: restaurant-app
 
 # Name of the container image.
-image: aldosalasrdz/rails-restaurant
+image: aldosalasrdz/restaurant-app
 
 # Deploy to these servers.
 servers:
-  - 137.184.126.66
+  - 178.156.128.108
 
 # Credentials for your image host.
 registry:
@@ -22,13 +22,13 @@ registry:
 # Remember to run `kamal env push` after making changes!
 env:
   clear:
-    DB_HOST: private-dev-clixiedb-do-user-2772124-0.c.db.ondigitalocean.com
-    DB_PORT: 25060
-    DB_NAME: rails_restaurants
+    DB_HOST: 178.156.128.108
   secret:
     - RAILS_MASTER_KEY
-    - DB_USERNAME
-    - MYSQL_ROOT_PASSWORD
+
+volumes:
+  - "/db:/rails/sqlite"
+  - "/storage:/rails/storage"
 
 # Use a different ssh user than root
 # ssh:
@@ -45,13 +45,21 @@ env:
 #     host: ssh://app@192.168.0.1
 
 # Use accessory services (secrets come from .env).
-accessories:
-  haproxy:
-    image: haproxy:2.4
-    host: 137.184.126.66
-    port: 8080
-    files:
-      - config/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+# accessories:
+#   db:
+#     image: mysql:8.0
+#     host: 192.168.0.2
+#     port: 3306
+#     env:
+#       clear:
+#         MYSQL_ROOT_HOST: '%'
+#       secret:
+#         - MYSQL_ROOT_PASSWORD
+#     files:
+#       - config/mysql/production.cnf:/etc/mysql/my.cnf
+#       - db/production.sql:/docker-entrypoint-initdb.d/setup.sql
+#     directories:
+#       - data:/var/lib/mysql
 #   redis:
 #     image: redis:7.0
 #     host: 192.168.0.2
@@ -59,9 +67,16 @@ accessories:
 #     directories:
 #       - data:/data
 
+# Configure custom arguments for Traefik. Be sure to reboot traefik when you modify it.
+# traefik:
+#   args:
+#     accesslog: true
+#     accesslog.format: json
+
 # Configure a custom healthcheck (default is /up on port 3000)
 healthcheck:
-  max_attempts: 10
+  path: /
+  # port: 4000
 
 # Bridge fingerprinted assets, like JS and CSS, between versions to avoid
 # hitting 404 on in-flight requests. Combines all files from new and old

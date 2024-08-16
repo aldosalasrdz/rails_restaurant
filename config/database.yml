@@ -15,10 +15,10 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: aldo
   password: <%= Rails.application.credentials.database[:password] %>
+  database: rails_restaurants
 
 development:
   <<: *default
-  database: rails_test_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -48,9 +48,6 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  <<: *default
-  database: rails_restaurants
-  host: <%= ENV["DB_HOST"] %>
-  username: kamal
-  password: <%= ENV["MYSQL_ROOT_PASSWORD"] %>
-  port: <%= ENV["DB_PORT"] %>
+  adapter: sqlite3
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
