@@ -42,7 +42,6 @@ builder:
 env:
   secret:
     - RAILS_MASTER_KEY
-    - MYSQL_ROOT_PASSWORD
   clear:
     DB_HOST: 5.161.179.211
     RAILS_LOG_LEVEL: debug
