@@ -1,8 +1,8 @@
 # Name of your application. Used to uniquely configure containers.
-service: rails-restaurant
+service: rails_restaurant
 
 # Name of the container image.
-image: aldosalasrdz/rails-restaurant
+image: aldosalasrdz/rails_restaurant
 
 # Deploy to these servers.
 servers:
@@ -44,8 +44,7 @@ env:
     - RAILS_MASTER_KEY
     - MYSQL_ROOT_PASSWORD
   clear:
-    DB_HOST: rails-restaurant-db
-    RAILS_LOG_LEVEL: debug
+    DB_HOST: rails_restaurant-db
 
 # Aliases are triggered with "bin/kamal <alias>". You can overwrite arguments on invocation:
 # "bin/kamal logs -r job" will tail logs from the first server in the job section.
