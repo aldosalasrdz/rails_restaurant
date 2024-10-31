@@ -50,6 +50,6 @@ test:
 production:
   <<: *default
   host: <%= ENV["DB_HOST"] %>
-  database: rails_restaurants
+  database: rails_restaurants_production
   username: root
   password: <%= ENV["MYSQL_ROOT_PASSWORD"] %>

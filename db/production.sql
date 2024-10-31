@@ -1,1 +1,1 @@
-CREATE DATABASE rails_restaurants;
+CREATE DATABASE rails_restaurants_production;
