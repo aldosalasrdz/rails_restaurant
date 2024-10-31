@@ -49,7 +49,7 @@ test:
 #
 production:
   <<: *default
-  host: <%= ENV["DB_HOST"]
+  host: <%= ENV["DB_HOST"] %>
   database: rails_restaurants
   username: root
-  password: <%= ENV["MYSQL_ROOT_PASSWORD"]
+  password: <%= ENV["MYSQL_ROOT_PASSWORD"] %>
