@@ -14,7 +14,7 @@ default: &default
   encoding: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: aldo
-  password: <%= Rails.application.credentials.database[:password] %>
+  password: <%= ENV["RAILS_DB_PASSWORD"] %>
   database: rails_restaurants
 
 development:
