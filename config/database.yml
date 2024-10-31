@@ -48,6 +48,8 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  adapter: sqlite3
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
+  <<: *default
+  host: <%= ENV["DB_HOST"]
+  database: rails_restaurants
+  username: root
+  password: <%= ENV["MYSQL_ROOT_PASSWORD"]
