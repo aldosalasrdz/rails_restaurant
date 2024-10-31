@@ -44,7 +44,7 @@ env:
     DB_HOST: 5.161.179.211
   secret:
     - RAILS_MASTER_KEY
-    - MYSQL_ROOT_HOST
+    - MYSQL_ROOT_PASSWORD
 
 # Aliases are triggered with "bin/kamal <alias>". You can overwrite arguments on invocation:
 # "bin/kamal logs -r job" will tail logs from the first server in the job section.
