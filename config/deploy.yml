@@ -15,7 +15,7 @@ env:
     - RAILS_MASTER_KEY
     - MYSQL_ROOT_PASSWORD
   clear:
-    DB_HOST: rails_restaurant-db
+    DB_HOST: 5.161.179.211
 accessories:
   db:
     image: mysql:8.0
